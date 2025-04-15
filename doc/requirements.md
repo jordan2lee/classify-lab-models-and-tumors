@@ -18,7 +18,7 @@ python3 -m venv venv; source venv/bin/activate
 ```
 
 ```bash
-pip install -r requirements.txt 
+pip install -r requirements.txt: pip install -r gdan-tmp-models/requirements.txt 
 ```
 
 ## 3. Sign into Applications
