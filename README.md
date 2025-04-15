@@ -7,7 +7,6 @@
 - [Download Source Files](#download-source-files)
 - [Download Data from Manifest File Using the GDC Client](#download-data-from-manifest-file-using-the-gdc-client)
 - [Run Processing Pipeline](#run-processing-pipeline)
-- [Calculate Euclidean Distances](#calculate-euclidean-distances)
 
 
 
