@@ -17,7 +17,7 @@ bash scripts/quantile_ranking_wrapper.sh \
 
 # Get subtype classifications
 mkdir -p data/classifier_gexp/ml_predictions_qrank/
-bash scripts/classify_wrapper.sh ${cancer} ${outpath}
+bash scripts/run_gexp_models.shh ${cancer} ${outpath}
 
 # Combine tumor and model samples into one file
 mkdir -p data/classifier_gexp/ml_predictions_qrank/combo
