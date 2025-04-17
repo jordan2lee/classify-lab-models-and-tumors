@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-set -e
-
 cancer=${1}
 outpath=${2}
 
@@ -130,29 +128,29 @@ elif [[ ${cancer} == 'SARC' ]]; then
     bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer}.Model.tsv hcmi_${cancer}_Model.QRANK ${cancer} GEXP skgrid.aklimate.cloudforest.subscope
 
 elif [[ ${cancer} == 'SKCM' ]]; then
-    bash RUN_MODEL.sh ${cancer}  GEXP cloudforest ../${outpath}/${cancer} _qrank_Tumor.tsv
-    bash RUN_MODEL.sh ${cancer}  GEXP subscope ../${outpath}/${cancer} _qrank_Tumor.tsv
-    bash tools/migrate.sh ${cancer}  GEXP hcmi_${cancer} _Tumor.QRANK
-    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer} .Tumor.tsv hcmi_${cancer} _Tumor.QRANK ${cancer}  GEXP cloudforest.subscope
+    bash RUN_MODEL.sh ${cancer} GEXP cloudforest ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP subscope ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash tools/migrate.sh ${cancer} GEXP hcmi_${cancer}_Tumor.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer}.Tumor.tsv hcmi_${cancer}_Tumor.QRANK ${cancer}  GEXP cloudforest.subscope
 
-    bash RUN_MODEL.sh ${cancer}  GEXP cloudforest ../${outpath}/${cancer} _qrank_Model.tsv
-    bash RUN_MODEL.sh ${cancer}  GEXP subscope ../${outpath}/${cancer} _qrank_Model.tsv
-    bash tools/migrate.sh ${cancer}  GEXP hcmi_${cancer} _Model.QRANK
-    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer} .Model.tsv hcmi_${cancer} _Model.QRANK ${cancer}  GEXP cloudforest.subscope
+    bash RUN_MODEL.sh ${cancer} GEXP cloudforest ../${outpath}/${cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP subscope ../${outpath}/${cancer}_qrank_Model.tsv
+    bash tools/migrate.sh ${cancer} GEXP hcmi_${cancer}_Model.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer}.Model.tsv hcmi_${cancer}_Model.QRANK ${cancer}  GEXP cloudforest.subscope
 
 elif [[ ${cancer} == 'UCEC' ]]; then
-    bash RUN_MODEL.sh ${cancer}  GEXP skgrid ../${outpath}/${cancer} _qrank_Tumor.tsv
-    bash RUN_MODEL.sh ${cancer}  GEXP cloudforest ../${outpath}/${cancer} _qrank_Tumor.tsv
-    bash RUN_MODEL.sh ${cancer}  GEXP subscope ../${outpath}/${cancer} _qrank_Tumor.tsv
-    bash tools/migrate.sh ${cancer}  GEXP hcmi_${cancer} _Tumor.QRANK
-    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer} .Tumor.tsv hcmi_${cancer} _Tumor.QRANK ${cancer}  GEXP skgrid.cloudforest.subscope
+    bash RUN_MODEL.sh ${cancer} GEXP skgrid ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP cloudforest ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP subscope ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash tools/migrate.sh ${cancer} GEXP hcmi_${cancer}_Tumor.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer}.Tumor.tsv hcmi_${cancer}_Tumor.QRANK ${cancer}  GEXP skgrid.cloudforest.subscope
 
-    bash RUN_MODEL.sh ${cancer}  GEXP skgrid ../${outpath}/${cancer} _qrank_Model.tsv
-    bash RUN_MODEL.sh ${cancer}  GEXP cloudforest ../${outpath}/${cancer} _qrank_Model.tsv
-    bash RUN_MODEL.sh ${cancer}  GEXP subscope ../${outpath}/${cancer} _qrank_Model.tsv
-    bash tools/migrate.sh ${cancer}  GEXP hcmi_${cancer} _Model.QRANK
-    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer} .Model.tsv hcmi_${cancer} _Model.QRANK ${cancer}  GEXP skgrid.cloudforest.subscope
+    bash RUN_MODEL.sh ${cancer} GEXP skgrid ../${outpath}/${cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP cloudforest ../${outpath}/${cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP subscope ../${outpath}/${cancer}_qrank_Model.tsv
+    bash tools/migrate.sh ${cancer} GEXP hcmi_${cancer}_Model.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer}.Model.tsv hcmi_${cancer}_Model.QRANK ${cancer}  GEXP skgrid.cloudforest.subscope
 fi
 
-mv -r hcmi*.QRANK ../data/classifier_gexp/ml_predictions_qrank/
+mv hcmi*QRANK ../data/classifier_gexp/ml_predictions_qrank/
 cd ..

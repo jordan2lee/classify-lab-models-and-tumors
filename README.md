@@ -77,7 +77,7 @@ The goal of this analysis is to get cancer subtype predictions for HCMI samples 
 
 The TMP models (pre-trained models) are specific to TCGA cancer cohorts (TCGA abbreviations), therefore we will split HCMI data into TCGA cancer cohorts(based on sample metadata).
 
-Results can found in `data/classifier_gexp/`
+Results can found in `data/classifier_gexp/ml_predictions_qrank/combo/HCMI_TMPsubtype_qRank_<CANCER>.tsv `
 
 
 Run classifier pipeline:
