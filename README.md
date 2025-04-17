@@ -7,7 +7,7 @@
 - [Download Source Files](#download-source-files)
 - [Download Data from Manifest File Using the GDC Client](#download-data-from-manifest-file-using-the-gdc-client)
 - [Run Processing Pipeline](#run-processing-pipeline)
-
+- [Sample Subtype Classification using Gene Expression Data](#sample-subtype-classification-using-gene-expression-data)
 
 
 ## Quickstart Guide
@@ -72,3 +72,31 @@ bash scripts/process.sh PAAD data/prep
 
 > Creates file `data/prep/<CANCER>_GEXP/<CANCER>_GEXP_prep2_<TYPE>.tsv` that is prepped for distance calculations
 
+## Sample Subtype Classification Using Gene Expression Data
+The goal of this analysis is to get cancer subtype predictions for HCMI samples (organoids, cell cultures , xenografts, etc). To accomplish this we will use the top performing pre-trained machine learning models (dockerized TMP models that were trained using TCGA data that has been pre-proccessed). Specifically we are interested in using gene expression from the HCMI samples and eventually compare primary tumors to their corresponding models (organoids, cell cultures , xenografts, etc).
+
+The TMP models (pre-trained models) are specific to TCGA cancer cohorts (TCGA abbreviations), therefore we will split HCMI data into TCGA cancer cohorts(based on sample metadata).
+
+Results can found in `data/classifier_gexp/ml_predictions_qrank/combo/HCMI_TMPsubtype_qRank_<CANCER>.tsv `
+
+
+Run classifier pipeline:
+```bash
+# where specify cancer, tumor-file, model-file, transformed-dir
+bash scripts/run_classify.sh \
+    PAAD \
+    data/prep/PAAD_GEXP/PAAD_GEXP_prep2_Tumor.tsv \
+    data/prep/PAAD_GEXP/PAAD_GEXP_prep2_Model.tsv \
+    data/classifier_gexp/ml_ready_qrank
+```
+
+*Note: LUNG (includes LUAD and LUSC), ESO (includes GEA and ESCC) during transformation and classification, then is merged in post-classification summary*
+
+> *Second Example for Combination Cohort*
+> ```bash
+> bash scripts/run_classify.sh \
+>     LUNG \
+>     data/prep/LUNG_GEXP/LUNG_GEXP_prep2_Tumor.tsv \
+>     data/prep/LUNG_GEXP/LUNG_GEXP_prep2_Model.tsv \
+>     data/classifier_gexp/ml_ready_qrank 
+> ```
