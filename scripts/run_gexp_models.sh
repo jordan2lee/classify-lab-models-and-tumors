@@ -17,6 +17,22 @@ if [[ ${cancer} == 'BLCA' ]]; then
     bash RUN_MODEL.sh ${cancer} GEXP subscope ../${outpath}/${cancer}_qrank_Model.tsv
     bash tools/migrate.sh ${cancer} GEXP hcmi_${cancer}_Model.QRANK
     bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer}.Model.tsv hcmi_${cancer}_Model.QRANK ${cancer} GEXP skgrid.cloudforest.subscope
+if [[ ${cancer} == 'BRCA' ]]; then
+    bash RUN_MODEL.sh ${cancer} GEXP skgrid ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP cloudforest ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP aklimate ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP jadbio ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP subscope ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash tools/migrate.sh ${cancer} GEXP hcmi_${cancer}_Tumor.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer}.Tumor.tsv hcmi_${cancer}_Tumor.QRANK ${cancer} GEXP skgrid.cloudforest.aklimate.jadbio.subscope
+
+    bash RUN_MODEL.sh ${cancer} GEXP skgrid ../${outpath}/${cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP cloudforest ../${outpath}/${cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP aklimate ../${outpath}/${cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP jadbio ../${outpath}/${cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP subscope ../${outpath}/${cancer}_qrank_Model.tsv
+    bash tools/migrate.sh ${cancer} GEXP hcmi_${cancer}_Model.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer}.Model.tsv hcmi_${cancer}_Model.QRANK ${cancer} GEXP skgrid.cloudforest.aklimate.jadbio.subscope
 elif [[ ${cancer} == 'COADREAD' ]]; then
     bash RUN_MODEL.sh ${cancer} GEXP skgrid ../${outpath}/${cancer}_qrank_Tumor.tsv
     bash RUN_MODEL.sh ${cancer} GEXP cloudforest ../${outpath}/${cancer}_qrank_Tumor.tsv
@@ -68,6 +84,16 @@ elif [[ ${cancer} == 'KID' ]]; then
     bash RUN_MODEL.sh ${modified_cancer} GEXP subscope ../${outpath}/${modified_cancer}_qrank_Model.tsv
     bash tools/migrate.sh ${modified_cancer} GEXP hcmi_${modified_cancer}_Model.QRANK
     bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${modified_cancer}.Model.tsv hcmi_${modified_cancer}_Model.QRANK ${modified_cancer} GEXP aklimate.cloudforest.subscope
+elif [[ ${cancer} == 'LGGGBM' ]]; then
+    bash RUN_MODEL.sh ${cancer} GEXP cloudforest ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP subscope ../${outpath}/${cancer}_qrank_Tumor.tsv
+    bash tools/migrate.sh ${cancer} GEXP hcmi_${cancer}_Tumor.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer}.Tumor.tsv hcmi_${cancer}_Tumor.QRANK ${cancer} GEXP cloudforest.subscope
+
+    bash RUN_MODEL.sh ${cancer} GEXP cloudforest ../${outpath}/${cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${cancer} GEXP subscope ../${outpath}/${cancer}_qrank_Model.tsv
+    bash tools/migrate.sh ${cancer} GEXP hcmi_${cancer}_Model.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer}.Model.tsv hcmi_${cancer}_Model.QRANK ${cancer} GEXP cloudforest.subscope
 elif [[ ${cancer} == 'LIHCCHOL' ]]; then
     bash RUN_MODEL.sh ${cancer} GEXP cloudforest ../${outpath}/${cancer}_qrank_Tumor.tsv
     bash RUN_MODEL.sh ${cancer} GEXP subscope ../${outpath}/${cancer}_qrank_Tumor.tsv
@@ -78,7 +104,40 @@ elif [[ ${cancer} == 'LIHCCHOL' ]]; then
     bash RUN_MODEL.sh ${cancer} GEXP subscope ../${outpath}/${cancer}_qrank_Model.tsv
     bash tools/migrate.sh ${cancer} GEXP hcmi_${cancer}_Model.QRANK
     bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${cancer}.Model.tsv hcmi_${cancer}_Model.QRANK ${cancer} GEXP cloudforest.subscope
+elif [[ ${cancer} == 'LUNG' ]]; then
+    modified_cancer='LUAD'
+    bash RUN_MODEL.sh ${modified_cancer} GEXP skgrid ../${outpath}/${modified_cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP aklimate ../${outpath}/${modified_cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP cloudforest ../${outpath}/${modified_cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP jadbio ../${outpath}/${modified_cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP subscope ../${outpath}/${modified_cancer}_qrank_Tumor.tsv
+    bash tools/migrate.sh ${modified_cancer} GEXP hcmi_${modified_cancer}_Tumor.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${modified_cancer}.Tumor.tsv hcmi_${modified_cancer}_Tumor.QRANK ${modified_cancer} GEXP skgrid.aklimate.cloudforest.jadbio.subscope
 
+    bash RUN_MODEL.sh ${modified_cancer} GEXP skgrid ../${outpath}/${modified_cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP aklimate ../${outpath}/${modified_cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP cloudforest ../${outpath}/${modified_cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP jadbio ../${outpath}/${modified_cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP subscope ../${outpath}/${modified_cancer}_qrank_Model.tsv
+    bash tools/migrate.sh ${modified_cancer} GEXP hcmi_${modified_cancer}_Model.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${modified_cancer}.Model.tsv hcmi_${modified_cancer}_Model.QRANK ${modified_cancer} GEXP skgrid.aklimate.cloudforest.jadbio.subscope
+
+    modified_cancer='LUSC'
+    bash RUN_MODEL.sh ${modified_cancer} GEXP skgrid ../${outpath}/${modified_cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP aklimate ../${outpath}/${modified_cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP cloudforest ../${outpath}/${modified_cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP jadbio ../${outpath}/${modified_cancer}_qrank_Tumor.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP subscope ../${outpath}/${modified_cancer}_qrank_Tumor.tsv
+    bash tools/migrate.sh ${modified_cancer} GEXP hcmi_${modified_cancer}_Tumor.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${modified_cancer}.Tumor.tsv hcmi_${modified_cancer}_Tumor.QRANK ${modified_cancer} GEXP skgrid.aklimate.cloudforest.jadbio.subscope
+
+    bash RUN_MODEL.sh ${modified_cancer} GEXP skgrid ../${outpath}/${modified_cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP aklimate ../${outpath}/${modified_cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP cloudforest ../${outpath}/${modified_cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP jadbio ../${outpath}/${modified_cancer}_qrank_Model.tsv
+    bash RUN_MODEL.sh ${modified_cancer} GEXP subscope ../${outpath}/${modified_cancer}_qrank_Model.tsv
+    bash tools/migrate.sh ${modified_cancer} GEXP hcmi_${modified_cancer}_Model.QRANK
+    bash tools/build_results_file.sh HCMI_GEXP_TMPsubtypes.${modified_cancer}.Model.tsv hcmi_${modified_cancer}_Model.QRANK ${modified_cancer} GEXP skgrid.aklimate.cloudforest.jadbio.subscope
 elif [[ ${cancer} == 'OV' ]]; then
     bash RUN_MODEL.sh ${cancer} GEXP skgrid ../${outpath}/${cancer}_qrank_Tumor.tsv
     bash RUN_MODEL.sh ${cancer} GEXP aklimate ../${outpath}/${cancer}_qrank_Tumor.tsv
