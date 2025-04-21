@@ -67,9 +67,3 @@ else
     -in2 data/classifier_gexp/ml_predictions_qrank/hcmi_${cancer}_Model.QRANK/HCMI_GEXP_TMPsubtypes.${cancer}.Model.tsv \
     -out data/classifier_gexp/ml_predictions_qrank/combo/HCMI_TMPsubtype_qRank_${cancer}.tsv
 fi
-
-# Run modifications incorporated in this script
-# + COADREAD Tumor/Model: no AKLIMATE/JADBio
-# + PAAD GEXP for AKLIMATE, but can use MULTI since uses only GEXP fts
-# + LGGGBM Tumor/Model: no JADBio/SKGrid/AKLIMATE
-# + ESO Tumor/Model: no JADBio

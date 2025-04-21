@@ -23,27 +23,14 @@ Ensure that steps are completed on the [Requirements page](doc/requirements.md) 
 ## Download Data from Manifest File Using the GDC Client
 Download Gene Expression Data
 ```bash
-bash scripts/gdc_download.sh
+bash scripts/gdc_download.sh PAAD
 ```
 
-This will create subfolders in `data-raw/<CANCER>_GEXP_<TYPE>` and place GDC molecular matrices here.
+This will create subfolders in `dat`a-raw/<CANCER>_GEXP_<TYPE>` and place GDC molecular matrices here.
 
-> *Note on the selection of Cancer Type: These HCMI selections of Cancer Type were made and grouped together for each corresponding TCGA cancer cohort:*
->
-> + 'BLCA':['Bladder Cancer']
-> + 'BRCA':['Breast Cancer','Intraductal Carcinoma']
-> + 'COADREAD': ['Colorectal Cancer', 'Rare Cancer','Serrated Adenoma','Tubular Adenoma','Tubulovilluos Adenoma']
-> + 'ESO': ['Esophageal Cancer','Stomach Cancer']
-> + 'HNSC':['Head and Neck']
-> + 'KID':['Kidney Cancer']
-> + 'LGGGBM':['Glioblastoma']
-> + 'LIHCCHOL':['Extrahepatic Cholangiocarcinoma','Ampulla of Vater','Hepatocellular carcinoma','Intrahepatic Cholangiocarcinoma']
-> + 'LUNG':['Lung Cancer']
-> + 'OV':['Ovarian Cancer']
-> + 'PAAD': ['Pancreatic Cancer']
-> + 'SARC': ['Bone Cancer','Clear Cell Sarcoma','Desmoid Tumors','Epithelial Sarcoma','Ewing Sarcoma','Intimal Sarcoma','Leiomyosarcoma','Rhabdomyosarcoma','Spindle Cell Sarcoma','Undifferentiated Pleomorphic Sarcoma']
-> + 'SKCM':['Melanoma']
-> + 'UCEC':['Endometrial Cancer'],
+> Options for cancer cohort includes `ALL`, `BLCA`, `BRCA`, `COADREAD`, `ESO`, `HNSC`, `KID`, `LGGGBM`, `LIHCCHOL`, `LUNG`, `OV`, `PAAD`, `SARC`, `SKCM`, `UCEC`
+
+For more details on each cancer cohort option see [Cohort Options Page](doc/cohort_options.md)
 
 
 ## Run Processing Pipeline
@@ -53,6 +40,10 @@ bash scripts/process.sh PAAD data/prep
 ```
 
 > Creates file `data/prep/<CANCER>_GEXP/<CANCER>_GEXP_prep2_<TYPE>.tsv` that is prepped for distance calculations
+
+> Options for cancer cohort includes `ALL`, `BLCA`, `BRCA`, `COADREAD`, `ESO`, `HNSC`, `KID`, `LGGGBM`, `LIHCCHOL`, `LUNG`, `OV`, `PAAD`, `SARC`, `SKCM`, `UCEC`
+
+For more details on each cancer cohort option see [Cohort Options Page](doc/cohort_options.md)
 
 ## Sample Subtype Classification Using Gene Expression Data
 The goal of this analysis is to get cancer subtype predictions for HCMI samples (organoids, cell cultures , xenografts, etc). To accomplish this we will use the top performing pre-trained machine learning models (dockerized TMP models that were trained using TCGA data that has been pre-proccessed). Specifically we are interested in using gene expression from the HCMI samples and eventually compare primary tumors to their corresponding models (organoids, cell cultures , xenografts, etc).
@@ -73,14 +64,6 @@ Results can found in `data/classifier_gexp/ml_predictions_qrank/combo/HCMI_TMPsu
 
 *Note: LUNG (includes LUAD and LUSC), ESO (includes GEA and ESCC) during transformation and classification, then is merged in post-classification summary*
 
-> *Second Example for Combination Cohort*
-> ```bash
-> bash scripts/run_classify.sh \
->     LUNG \
->     data/prep/LUNG_GEXP/LUNG_GEXP_prep2_Tumor.tsv \
->     data/prep/LUNG_GEXP/LUNG_GEXP_prep2_Model.tsv \
->     data/classifier_gexp/ml_ready_qrank 
-> ```
 
 ## Sample Subtype Classification Using DNA Methylation Data
 The goal of this analysis is to get cancer subtype predictions for HCMI samples (organoids, cell cultures , xenografts, etc). To accomplish this we will use the top performing pre-trained machine learning models (dockerized TMP models that were trained using TCGA data that has been pre-proccessed). Specifically we are interested in using gene expression from the HCMI samples and eventually compare primary tumors to their corresponding models (organoids, cell cultures , xenografts, etc).
